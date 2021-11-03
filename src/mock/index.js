@@ -6,7 +6,7 @@ if(process.env.NODE_ENV !=='production'||process.env.VUE_APP_PREVIEW==='true'){
     const Mock=require('mockjs')
     require('./services/userList')
     Mock.setup({
-        timeout:800
+        timeout:0
     })
     console.log("mock已挂载")
 }

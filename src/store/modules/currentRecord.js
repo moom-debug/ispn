@@ -8,5 +8,8 @@ const currentRecord={
         SETNAME(state,value){
 
         }
+    },
+    actions:{
+        
     }
 }

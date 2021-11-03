@@ -39,9 +39,7 @@ export default {
     }
   },
   mixins:[userListMixin],
-  beforeCreate(){
-    this.$store.dispatch('userList/GetUserList')
-  }
+  
 };
 </script>
 
