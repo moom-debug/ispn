@@ -31,15 +31,17 @@
 
 <script>
 import userListMixin from '@/store/userListMixin'
+
 export default {
   data(){
     return{
       
     }
   },
-  mixins:[userListMixin]
-    
-  
+  mixins:[userListMixin],
+  beforeCreate(){
+    this.$store.dispatch('userList/GetUserList')
+  }
 };
 </script>
 

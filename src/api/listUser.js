@@ -1,11 +1,14 @@
 import request from '@/utils/request'
 
+const Api={
+  listUser:'/user/list'
+}
+
 // 查询图书类别列表
-export function listCategory(query) {
+export function listUser() {
   return request({
-    url: '/category/list',
+    url: Api.listUser,
     method: 'get',
-    params: query
   })
 }
 

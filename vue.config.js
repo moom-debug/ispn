@@ -16,15 +16,15 @@ module.exports = {
       port: "8081",
       https: false,
       hotOnly: false,
-      proxy: {
-        "/api": {
-          target: "http://localhost:8089", 
-          ws: true,
-          changeOrigin: true,
-          pathRewrite: {
-            "^/api": "",
-          },
-        },
-      },
+      // proxy: {
+      //   "/api": {
+      //     target: "http://localhost:8089", 
+      //     ws: true,
+      //     changeOrigin: true,
+      //     pathRewrite: {
+      //       "^/api": "",
+      //     },
+      //   },
+      // },
     },
   };

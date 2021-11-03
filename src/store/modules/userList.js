@@ -1,23 +1,33 @@
-
+import {listUser} from '@/api/listUser'
 import headimg from '@/assets/img/headimg.jpg'
 const userList={
     namespaced: true,//只有这里加了这个在...mapState()才可以用
     state:{
-        userList:[
-            {headimg:headimg,name:'东哥',lastcord:'还会2321312322312321',time:"9:00"},
-            {headimg:headimg,name:'哥',lastcord:'22213123213',time:"9:01"},
-            {headimg:headimg,name:'东',lastcord:'还会2',time:"9:03"},
-            {headimg:headimg,name:'东2哥',lastcord:'2还会',time:"9:04"},
-        ],
+        userList:[],
         searName:''
     },
     mutations:{
         SETSEARNAME(state,value){
             state.searName=value;
+        },
+        SETUSERLIST(state,value){
+            state.userList=value;
+            console.log(state.userList)
         }
     },
     actions:{
-
+        GetUserList({commit}){
+            return new Promise((resolve,reject)=>{
+                listUser().then(response=>{
+                    const result=response.data.result
+                    console.log(result)
+                    commit('SETUSERLIST',result)
+                    resolve(response)
+                }).catch(error=>{
+                    reject(error)
+                })
+            })
+        }
     },
     getters:{
         userList:(state) => {
