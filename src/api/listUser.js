@@ -1,7 +1,8 @@
 import request from '@/utils/request'
 
 const Api={
-  listUser:'/user/list'
+  listUser:'/user/list',
+  RecordCurrent:'/record/current'
 }
 
 // 查询图书类别列表
@@ -13,10 +14,11 @@ export function listUser() {
 }
 
 // 查询图书类别
-export function getCategory(isbn) {
+export function getCurrentRecord(parameter) {
   return request({
-    url: '/category/' + isbn,
-    method: 'get'
+    url: Api.RecordCurrent,
+    method: 'post',
+    data:parameter
   })
 }
 

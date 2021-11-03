@@ -21,6 +21,11 @@ export const builder=(data,message,code=0,headers={})=>{
     return responseBody
 }
 
+export const getBody=(options)=>{
+    return options.body&&JSON.parse(options.body)
+}
+
+
 
 
 

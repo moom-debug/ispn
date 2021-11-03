@@ -2,105 +2,16 @@
 <template>
   <div class="recordpan">
     <ul class="record_ul">
-      <li class="recordli_left">
+      <li class="recordli_left" v-for="item in record" :key="item.id">
         <div class="everycord">
-          <div class="record_img right">
+          <div :class="['record_img', item.direction]">
             <img src="../assets/img/headimg.jpg" alt="" />
           </div>
-          <div class="record right">
-            <div class="recordname right">mo_om</div>
-            <div class="recordtext right green">
-              你好啊，我开发了一个网站！hhhhhhh
+          <div :class="['record',item.direction]">
+            <div :class="['recordname',item.direction]">mo_om</div>
+            <div :class="{recordtext:true,[item.direction]:true, green:item.direction=='right'}">
+              {{item.text}}
             </div>
-          </div>
-        </div>
-      </li>
-      <li class="recordli_left">
-        <div class="everycord">
-          <div class="record_img right">
-            <img src="../assets/img/headimg.jpg" alt="" />
-          </div>
-          <div class="record right">
-            <div class="recordname right">mo_om</div>
-            <div class="recordtext right green">
-              你好啊，我开发了一个网站！hhhhhhh
-            </div>
-          </div>
-        </div>
-      </li>
-      <li class="recordli_left">
-        <div class="everycord">
-          <div class="record_img right">
-            <img src="../assets/img/headimg.jpg" alt="" />
-          </div>
-          <div class="record right">
-            <div class="recordname right">mo_om</div>
-            <div class="recordtext right green">
-              你好啊，我开发了一个网站！hhhhhhh
-            </div>
-          </div>
-        </div>
-      </li>
-      <li class="recordli_left">
-        <div class="everycord">
-          <div class="record_img right">
-            <img src="../assets/img/headimg.jpg" alt="" />
-          </div>
-          <div class="record right">
-            <div class="recordname right">mo_om</div>
-            <div class="recordtext right green">
-              你好啊，我开发了一个网站！hhhhhhh
-            </div>
-          </div>
-        </div>
-      </li>
-      <li class="recordli_left">
-        <div class="everycord">
-          <div class="record_img right">
-            <img src="../assets/img/headimg.jpg" alt="" />
-          </div>
-          <div class="record right">
-            <div class="recordname right">mo_om</div>
-            <div class="recordtext right green">
-              你好啊，我开发了一个网站！hhhhhhh
-            </div>
-          </div>
-        </div>
-      </li>
-      <li class="recordli_left">
-        <div class="everycord">
-          <div class="record_img right">
-            <img src="../assets/img/headimg.jpg" alt="" />
-          </div>
-          <div class="record right">
-            <div class="recordname right">mo_om</div>
-            <div class="recordtext right green">
-              你好啊，我开发了一个网站！hhhhhhh
-            </div>
-          </div>
-        </div>
-      </li>
-      <li class="recordli_left">
-        <div class="everycord">
-          <div class="record_img right">
-            <img src="../assets/img/headimg.jpg" alt="" />
-          </div>
-          <div class="record right">
-            <div class="recordname right">mo_om</div>
-            <div class="recordtext right green">
-              你好啊，我开发了一个网站！hhhhhhh
-            </div>
-          </div>
-        </div>
-      </li>
-      <li class="recordli_right">
-        <div class="everycord">
-          <div class="record_img left">
-            <img src="../assets/img/headimg.jpg" alt="" />
-          </div>
-          <div class="record left">
-            <div class="recordname">mo_om</div>
-            <div class="recordtext">牛啊！</div>
           </div>
         </div>
       </li>
@@ -109,7 +20,12 @@
 </template>
 
 <script>
-export default {};
+import currentRecordMixin from '@/store/currentRecordMixin'
+export default {
+  data:{
+  },
+  mixins:[currentRecordMixin]
+};
 </script>
 
 <style>

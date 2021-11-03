@@ -1,14 +1,17 @@
 // 聊天区顶部名字组件，其实没什么用，但是...可以扩展
 <template>
   <div class="right_name">
-    <div class="name">mo_om</div>
+    <div class="name">{{name}}</div>
     <!-- 更多 -->
     <a href="javascript:;"><div class="more">...</div></a>
   </div>
 </template>
 
 <script>
-export default {};
+import currentRecordMixin from '@/store/currentRecordMixin'
+export default {
+  mixins:[currentRecordMixin]
+};
 </script>
 
 <style>

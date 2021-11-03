@@ -1,5 +1,5 @@
 import {listUser} from '@/api/listUser'
-import headimg from '@/assets/img/headimg.jpg'
+
 const userList={
     namespaced: true,//只有这里加了这个在...mapState()才可以用
     state:{

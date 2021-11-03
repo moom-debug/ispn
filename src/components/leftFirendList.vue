@@ -3,7 +3,7 @@
   <div class="left_firendList">
     <ul class="firend_ul">
       <!-- 每个li都是一个区域 -->
-      <li class="friend_li" v-for="item in userList" :key="item.index">
+      <li class="friend_li" v-for="item in userList" :key="item.index" @click="changeRecordSpan(item.id)">
         <a href="javascript:;">
           <div class="li_outter">
             <!-- 个人头像 -->
@@ -39,6 +39,11 @@ export default {
     }
   },
   mixins:[userListMixin],
+  methods:{
+    changeRecordSpan(id){
+      this.$store.dispatch("currentRecord/SetRecordSpan",id);
+    }
+  }
   
 };
 </script>

@@ -5,6 +5,7 @@ if(process.env.NODE_ENV !=='production'||process.env.VUE_APP_PREVIEW==='true'){
     }
     const Mock=require('mockjs')
     require('./services/userList')
+    require('./services/recordSpan')
     Mock.setup({
         timeout:0
     })
