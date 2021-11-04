@@ -8,6 +8,7 @@
 </template>
 
 <script>
+//相关名字显示封装到了仓库中
 import currentRecordMixin from '@/store/currentRecordMixin'
 export default {
   mixins:[currentRecordMixin]

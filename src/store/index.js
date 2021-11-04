@@ -1,3 +1,4 @@
+//把所有modules集成到这里
 import Vue from 'vue'
 import Vuex from 'vuex'
 import userList from './modules/userList'

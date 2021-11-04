@@ -8,7 +8,7 @@
             <img src="../assets/img/headimg.jpg" alt="" />
           </div>
           <div :class="['record',item.direction]">
-            <div :class="['recordname',item.direction]">mo_om</div>
+            <div :class="['recordname',item.direction]">{{item.direction=='left'?name:'懂'}}</div>
             <div :class="{recordtext:true,[item.direction]:true, green:item.direction=='right'}">
               {{item.text}}
             </div>
@@ -20,6 +20,7 @@
 </template>
 
 <script>
+// 相关数据获取操作封装到了仓库中
 import currentRecordMixin from '@/store/currentRecordMixin'
 export default {
   data:{
@@ -85,9 +86,12 @@ export default {
   height: 50px;
   border-radius: 10px;
 }
+.record{
+  padding-top: 10px;
+}
 .recordname {
   margin-bottom: 5px;
-  font-size: 14px;
+  font-size: 11px;
   content: "";
 }
 .recordtext {
@@ -103,9 +107,11 @@ export default {
 }
 .left {
   float: left;
+  
 }
 .right {
   float: right;
+ 
 }
 .green {
   background-color: rgb(17, 40, 53, 0.9);

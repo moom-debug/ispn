@@ -30,21 +30,11 @@
 </template>
 
 <script>
+//相关显示用户列表和click封装到了仓库中
 import userListMixin from '@/store/userListMixin'
-
+import currentRecordMixin from '@/store/currentRecordMixin'
 export default {
-  data(){
-    return{
-      
-    }
-  },
-  mixins:[userListMixin],
-  methods:{
-    changeRecordSpan(id){
-      this.$store.dispatch("currentRecord/SetRecordSpan",id);
-    }
-  }
-  
+  mixins:[userListMixin,currentRecordMixin],
 };
 </script>
 

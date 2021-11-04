@@ -11,9 +11,6 @@ export default {
   mounted() {
     console.log(this.$store.state.userlist)
   },
-  beforeCreate(){
-    this.$store.dispatch('userList/GetUserList')
-  }
 }
 </script>
 

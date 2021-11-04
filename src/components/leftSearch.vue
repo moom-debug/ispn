@@ -8,7 +8,7 @@
         <div class="search_icon_left">
           <span class="icon iconfont icon-sousuo"></span>
         </div>
-        <input class="sear_text" type="text" v-model="searname" placeholder="搜索" @keyup="search"/>
+        <input class="sear_text" type="text" v-model="searname" placeholder="搜索" @keyup="search(searname)"/>
       </div>
       <!-- 添加好友按钮 -->
       <div class="search_right">
@@ -23,17 +23,16 @@
 </template>
 
 <script>
+//相关搜索操作封装到了仓库中
+import userListMixin from '@/store/userListMixin'
 export default {
   data(){
     return{
-      searname:''
+      searname:'' //暂时存取searname用v-model 
     }
   },
-  methods:{
-    search(){
-      this.$store.commit('userList/SETSEARNAME',this.searname)
-    }
-  }
+  mixins:[userListMixin],
+  
 };
 </script>
 

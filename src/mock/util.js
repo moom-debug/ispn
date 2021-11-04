@@ -1,3 +1,5 @@
+//mock数据的builder类，封装成http格式的response，一般在数据最后模拟前需要经过这里的封装
+//有用的数据一般存在result中
 const responseBody={
     message:'',
     timestamp:0,
@@ -6,7 +8,7 @@ const responseBody={
 }
 
 export const builder=(data,message,code=0,headers={})=>{
-    responseBody.result=data
+    responseBody.result=data  //有用的数据一般存在result中，一般都调用这里
     if(message!=undefined &&message !==null){
         responseBody.message=message
     }
@@ -21,6 +23,7 @@ export const builder=(data,message,code=0,headers={})=>{
     return responseBody
 }
 
+//拿到前端的数据对象
 export const getBody=(options)=>{
     return options.body&&JSON.parse(options.body)
 }
