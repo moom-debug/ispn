@@ -1,6 +1,7 @@
 //模拟的是当前聊天窗口的数据
 import Mock from 'mockjs'
 import { builder,getBody } from '../util'   //用解构赋值承接那边传过来的的分别暴露内容,es6的内容
+import headimg from '@/assets/img/headimg.jpg'
 import headimg2 from '@/assets/img/headimg2.jpg'
 import headimg3 from '@/assets/img/headimg3.jpg'
 import headimg4 from '@/assets/img/headimg4.jpg'
@@ -55,6 +56,17 @@ const currentRecord=(options)=>{
                 {id:2,text:'hhhh',direction:'right'},
                 {id:3,text:'hhhhh',direction:'left'},
                 {id:4,text:'hhhhhh',direction:'right'},
+            ]
+        })
+    }
+    else if(body.id==5){
+        return builder({
+            name:'牛',
+            headimg:headimg,
+            record:[
+                {id:1,text:'我是新加的',direction:'left'},
+                {id:2,text:'你头像怎么跟我一样',direction:'right'},
+                
             ]
         })
     }

@@ -35,6 +35,29 @@ import userListMixin from '@/store/mixin/userListMixin'
 import currentRecordMixin from '@/store/mixin/currentRecordMixin'
 export default {
   mixins:[userListMixin,currentRecordMixin],
+  //在开始时就调用获取所有用户列表，调用位置为leftFriendList.vue
+        beforeCreate(){
+          this.$store.dispatch('userList/GetUserList')
+          
+        }
+
+  // 在currentRecordMixin里调用了
+  //  methods:{
+  //       // changeRecordSpan(id){
+  //       //   this.$store.dispatch("currentRecord/SetRecordSpan",id);
+  //       // }
+  //       //点击不同人物跳转到不同聊天窗口，调用位置为leftFirendList.vue的click事件
+  //       ...mapActions('currentRecord',{changeRecordSpan:'SetRecordSpan'})
+  //   }
+
+  //在userListMixin里调用了
+  // computed: {
+  //         ...mapGetters('userList',['userList']),//调用位置为leftFriendList.vue的列表渲染
+  //         // userList:{
+  //         //   this.$store.getters['userList/userList']
+  //         // }
+          
+  //       },
 };
 </script>
 

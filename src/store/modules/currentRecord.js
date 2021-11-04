@@ -5,6 +5,7 @@ const currentRecord={
     //只有打开了命名空间才可以使用...mapState的语法糖
     namespaced: true,//只有这里加了这个在...mapState()才可以用
     state:{
+        id:'',
         anotherName:'', //聊天窗口的对方名字
         anotherHeadImg:'', //聊天窗口对方的名字
         record:'', //聊天记录
@@ -19,8 +20,10 @@ const currentRecord={
         },
         SETRECORD(state,value){
             state.record=value
+        },
+        SETID(state,value){
+            state.id=value
         }
-
     },
     actions:{
         //当点击不同人物的小方框时记录id，向后端请求和对方的name,和聊天记录
@@ -32,7 +35,8 @@ const currentRecord={
                     commit('SETNAME',result.name)   //获取后到mutations中向state中注册
                     commit('SETRECORD',result.record)
                     commit('SETANOTHERHEADIMG',result.headimg)
-                    resolve()
+                    commit('SETID',id)  //这里设置id的原因是输入框需要知道现在在跟谁对话，好利用此id上传新发送的内容
+                    resolve('SETID')
                 }).catch(error=>{
                     reject()
                     })

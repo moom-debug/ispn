@@ -24,19 +24,52 @@
     </div>
     <!-- 真的写的面板 -->
     <div class="wirte">
-      <textarea name="" id="" cols="30" rows="10" class="textwrite">
-还行还行</textarea
-      >
+      <textarea name="" id="" cols="30" rows="10" class="textwrite" v-model="input" @keyup.enter="send"></textarea>
       <!-- 发送按钮 -->
       <a href="javascript:;">
-        <div class="btn">发送</div>
+        <div v-show="id!=''" class="btn" @click="send">发送</div>
       </a>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import storage from "store"
+import currentRecordMixin from '@/store/mixin/currentRecordMixin'
+import localStroageMixin from '@/store/mixin/localStroageMixin'
+export default {
+  data(){
+    return{
+      input:''
+    }
+  },
+  //写到localStroageMixin里了
+  // methods: {
+  //       send(){ //触发位置是writeSpan的回车时间或者发送按钮
+  //         if(storage.get(this.id)!=null){        //当首页时没有点击好友时，避免输入，一般是在输入框按了回车键,这里可扩展功能与自己对话
+  //           //重要的是存在storage里的是字符串数组，这样vue才可以列表渲染，concat是拼数组，强制打平
+  //           storage.set(this.id,storage.get(this.id).concat([this.input]))  
+  //           console.log(storage.get(this.id))
+  //           //把更新的本地储存存到store仓库里，这样聊天面板才会更新，本来是没必要这样的,
+  //           //但是recordSpan里的computed属性没法检测到storage的变化，所以利用仓库对于recordSpan的计算属性来实现实时更新
+  //           this.$store.commit('localStroage/SETNEWLIST',storage.get(this.id)) 
+  //           console.log(this.id)
+  //           this.input="" 
+  //         }
+  //         else
+  //           storage.set(this.id,[this.input])
+  //       }
+  //     },
+
+  // 本来是想写在localStroageMixin里的，但是updated会同时触发两边的组件更新，在那边的话会更新以后再调用更新，就会自循环了
+  //因此建议生命周期操作不要写在Mixin里
+  updated(){    //挂载前都还没有this.id和本地储存,所以要update，在初次加载时即到本地储存里看看有没有数据可以放到store里
+        console.log("我执行了")
+        this.$store.commit('localStroage/SETNEWLIST',storage.get(this.id))
+  },
+  mixins:[currentRecordMixin,localStroageMixin],
+  
+};
 </script>
 
 <style>

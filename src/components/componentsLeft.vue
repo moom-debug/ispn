@@ -26,7 +26,20 @@
 //相关自己的头像操作已经封装到了仓库里
 import myselfMixin from '@/store/mixin/myselfMixin'
 export default {
-  mixins:[myselfMixin]
+  mixins:[myselfMixin],
+
+  //在myselfMixin里调用了
+  // computed:{
+  //       //调用位置为componentsLeft.vue和recordSpan.vue
+  //       ...mapState('myself',['headImg','name'])
+  //   },
+
+  beforeCreate() {
+        // mapActions('myself',['getMyself']) //这个语法糖是对象写法不能写到script里
+        //触发的地方是左边个人栏componentsLfet.vue加载时，去后端获取到数据放到仓库里
+        this.$store.dispatch('myself/getMyself')
+        
+  },
 };
 </script>
 

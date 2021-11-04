@@ -15,10 +15,7 @@ const userListMixin={
           //调用位置为leftSearch.vue的keyUp事件
           ...mapMutations('userList',{search:'SETSEARNAME'})
         },
-        //在开始时就调用获取所有用户列表，调用位置为leftFriendList.vue
-        beforeCreate(){
-          this.$store.dispatch('userList/GetUserList')
-        }
+        
 }
 //切记暴露
 export default userListMixin;

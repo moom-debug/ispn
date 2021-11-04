@@ -33,6 +33,15 @@ export default {
   },
   mixins:[userListMixin],
   
+  //在userListMixin里调用了
+  // methods:{
+  //         // search(searname){
+  //         //   this.$store.commit('userList/SETSEARNAME',searname)
+  //         // }
+  //         //调用位置为leftSearch.vue的keyUp事件
+  //         ...mapMutations('userList',{search:'SETSEARNAME'})
+  //       },
+  
 };
 </script>
 

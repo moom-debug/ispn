@@ -3,7 +3,7 @@ import { mapState,mapActions} from "vuex";
 const currentRecordMixin={
     computed:{
         //computed选项注册了currentRecord的name和record，调用位置为recordSpan.vue和recordName.vue
-        ...mapState("currentRecord",["anotherName",'record','anotherHeadImg'])  
+        ...mapState("currentRecord",["anotherName",'record','anotherHeadImg','id'])  
     },
     methods:{
         // changeRecordSpan(id){
