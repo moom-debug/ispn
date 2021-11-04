@@ -4,7 +4,7 @@
     <!-- 左侧栏上部 -->
     <div class="layleft_top">
       <a href="javascript:;"
-        ><img class="headimg" src="../assets/img/headimg.jpg" alt="头像"
+        ><img class="headimg" :src="headImg" alt="头像"
       /></a>
       <a href="javascript:;"
         ><span class="icon iconfont icon-yonghu layleft_top"></span
@@ -23,7 +23,11 @@
 </template>
 
 <script>
-export default {};
+//相关自己的头像操作已经封装到了仓库里
+import myselfMixin from '@/store/mixin/myselfMixin'
+export default {
+  mixins:[myselfMixin]
+};
 </script>
 
 <style>

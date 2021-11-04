@@ -5,13 +5,17 @@ const currentRecord={
     //只有打开了命名空间才可以使用...mapState的语法糖
     namespaced: true,//只有这里加了这个在...mapState()才可以用
     state:{
-        name:'', //聊天窗口的对方名字
+        anotherName:'', //聊天窗口的对方名字
+        anotherHeadImg:'', //聊天窗口对方的名字
         record:'', //聊天记录
         lastWrite:''  //自己的输入还未发送时
     },
     mutations:{
         SETNAME(state,value){  //最后同步向state中注册
-            state.name=value
+            state.anotherName=value
+        },
+        SETANOTHERHEADIMG(state,value){
+            state.anotherHeadImg=value
         },
         SETRECORD(state,value){
             state.record=value
@@ -27,6 +31,7 @@ const currentRecord={
                     console.log(result)
                     commit('SETNAME',result.name)   //获取后到mutations中向state中注册
                     commit('SETRECORD',result.record)
+                    commit('SETANOTHERHEADIMG',result.headimg)
                     resolve()
                 }).catch(error=>{
                     reject()

@@ -7,6 +7,7 @@ if(process.env.NODE_ENV !=='production'||process.env.VUE_APP_PREVIEW==='true'){
     const Mock=require('mockjs')
     require('./services/userList')
     require('./services/recordSpan')
+    require('./services/myself')
     Mock.setup({
         timeout:0   //多久相应，为了避免白屏，以后白屏优化的时候再进行设置
     })

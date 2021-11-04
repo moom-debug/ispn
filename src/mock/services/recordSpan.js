@@ -1,7 +1,6 @@
 //模拟的是当前聊天窗口的数据
 import Mock from 'mockjs'
 import { builder,getBody } from '../util'   //用解构赋值承接那边传过来的的分别暴露内容,es6的内容
-import headimg from '@/assets/img/headimg.jpg'
 import headimg2 from '@/assets/img/headimg2.jpg'
 import headimg3 from '@/assets/img/headimg3.jpg'
 import headimg4 from '@/assets/img/headimg4.jpg'

@@ -31,8 +31,8 @@
 
 <script>
 //相关显示用户列表和click封装到了仓库中
-import userListMixin from '@/store/userListMixin'
-import currentRecordMixin from '@/store/currentRecordMixin'
+import userListMixin from '@/store/mixin/userListMixin'
+import currentRecordMixin from '@/store/mixin/currentRecordMixin'
 export default {
   mixins:[userListMixin,currentRecordMixin],
 };

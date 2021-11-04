@@ -24,7 +24,7 @@
 
 <script>
 //相关搜索操作封装到了仓库中
-import userListMixin from '@/store/userListMixin'
+import userListMixin from '@/store/mixin/userListMixin'
 export default {
   data(){
     return{

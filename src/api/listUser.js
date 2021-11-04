@@ -2,7 +2,8 @@ import request from '@/utils/request'
 
 const Api={
   listUser:'/user/list',
-  RecordCurrent:'/record/current'
+  RecordCurrent:'/record/current',
+  myself:'/myself/get'
 }
 
 // 查询所有好友列表
@@ -19,6 +20,14 @@ export function getCurrentRecord(parameter) {
     url: Api.RecordCurrent,
     method: 'post',
     data:parameter
+  })
+}
+
+// 查询自己的数据
+export function GetMyself() {
+  return request({
+    url: Api.myself,
+    method: 'get',
   })
 }
 

@@ -1,7 +1,7 @@
 // 聊天区顶部名字组件，其实没什么用，但是...可以扩展
 <template>
   <div class="right_name">
-    <div class="name">{{name}}</div>
+    <div class="name">{{anotherName}}</div>
     <!-- 更多 -->
     <a href="javascript:;"><div class="more">...</div></a>
   </div>
@@ -9,7 +9,7 @@
 
 <script>
 //相关名字显示封装到了仓库中
-import currentRecordMixin from '@/store/currentRecordMixin'
+import currentRecordMixin from '@/store/mixin/currentRecordMixin'
 export default {
   mixins:[currentRecordMixin]
 };

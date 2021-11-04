@@ -4,11 +4,14 @@
     <ul class="record_ul">
       <li class="recordli_left" v-for="item in record" :key="item.id">
         <div class="everycord">
-          <div :class="['record_img', item.direction]">
-            <img src="../assets/img/headimg.jpg" alt="" />
+          <!-- 类名的数组写法，确定类的个数，但不确定名字时可以像我这样写 -->
+          <div :class="['record_img', item.direction]">  
+            <!-- 类名的判别式，direction是否为left来决定显示哪张照片 -->
+            <img :src="item.direction=='left'?anotherHeadImg:headImg" alt="" />   
           </div>
           <div :class="['record',item.direction]">
-            <div :class="['recordname',item.direction]">{{item.direction=='left'?name:'懂'}}</div>
+            <div :class="['recordname',item.direction]">{{item.direction=='left'?anotherName:name}}</div>
+            <!-- 类名的对象写法，不确定个数，也不确定有没有时可以这样写，[item.direction]是可计算属性，键是变量时要写成可计算属性，es6 -->
             <div :class="{recordtext:true,[item.direction]:true, green:item.direction=='right'}">
               {{item.text}}
             </div>
@@ -20,12 +23,11 @@
 </template>
 
 <script>
-// 相关数据获取操作封装到了仓库中
-import currentRecordMixin from '@/store/currentRecordMixin'
+// 相关数据获取操作封装到了仓库中，因为这里有两边的name和img，所以特别注意mixin时属性名千万不要相同
+import currentRecordMixin from '@/store/mixin/currentRecordMixin'
+import myselfMixin from '@/store/mixin/myselfMixin'
 export default {
-  data:{
-  },
-  mixins:[currentRecordMixin]
+  mixins:[currentRecordMixin,myselfMixin]
 };
 </script>
 
