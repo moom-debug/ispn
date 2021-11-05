@@ -38,25 +38,25 @@
             <input
               class="sear_text addsear_text"
               type="text"
-              v-model="searname"
+              v-model="searall"
               placeholder="搜索用户名"
-              @keyup="search(searname)"
+              @keyup="searchAll(searall)"
             />
           </div>
-          <div class="left_firendList addleft_firendList">
+          <div class="left_firendList addleft_firendList" v-if="searchUser!=''">
             <ul class="firend_ul addleft_firendList">
               <!-- 每个li都是一个区域 -->
-              <li class="friend_li addfriend_li">
+              <li class="friend_li addfriend_li" v-for="item in searchUser" :key='item.key'>
                 <a href="javascript:;">
                   <div class="li_outter" @click="addfri">
                     <!-- 个人头像 -->
                     <div class="li_left">
-                      <img src="../assets/img/headimg.jpg" alt="" />
+                      <img :src="item.headimg" alt="" />
                     </div>
                     <div class="li_right">
                       <!-- 名字与最后的聊天记录 -->
                       <div class="li_text">
-                        <div class="liname">mo_om</div>
+                        <div class="liname">{{item.name}}</div>
                       </div>
                       <!-- 时间 -->
                       <div class="litime">
@@ -66,66 +66,7 @@
                   </div>
                 </a>
               </li>
-              <li class="friend_li addfriend_li">
-                <a href="javascript:;">
-                  <div class="li_outter" @click="addfri">
-                    <!-- 个人头像 -->
-                    <div class="li_left">
-                      <img src="../assets/img/headimg.jpg" alt="" />
-                    </div>
-                    <div class="li_right">
-                      <!-- 名字与最后的聊天记录 -->
-                      <div class="li_text">
-                        <div class="liname">mo_om</div>
-                      </div>
-                      <!-- 时间 -->
-                      <div class="litime">
-                        <div class="li_time addli_time">添加好友</div>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li class="friend_li addfriend_li">
-                <a href="javascript:;">
-                  <div class="li_outter" @click="addfri">
-                    <!-- 个人头像 -->
-                    <div class="li_left">
-                      <img src="../assets/img/headimg.jpg" alt="" />
-                    </div>
-                    <div class="li_right">
-                      <!-- 名字与最后的聊天记录 -->
-                      <div class="li_text">
-                        <div class="liname">mo_om</div>
-                      </div>
-                      <!-- 时间 -->
-                      <div class="litime">
-                        <div class="li_time addli_time">添加好友</div>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li class="friend_li addfriend_li">
-                <a href="javascript:;">
-                  <div class="li_outter" @click="addfri">
-                    <!-- 个人头像 -->
-                    <div class="li_left">
-                      <img src="../assets/img/headimg.jpg" alt="" />
-                    </div>
-                    <div class="li_right">
-                      <!-- 名字与最后的聊天记录 -->
-                      <div class="li_text">
-                        <div class="liname">mo_om</div>
-                      </div>
-                      <!-- 时间 -->
-                      <div class="litime">
-                        <div class="li_time addli_time">添加好友</div>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </li>
+              
             </ul>
           </div>
           <span slot="footer" class="dialog-footer">
@@ -205,17 +146,20 @@
 </template>
 
 <script>
+import {GetAllUser} from '@/api/listUser'
 //相关搜索操作封装到了仓库中
 import userListMixin from "@/store/mixin/userListMixin";
 export default {
   data() {
     return {
-      searname: "", //暂时存取searname用v-model
-      dialogVisible: true, //添加好友对话框
+      searname: "", //搜索好友，暂时存取searname用v-model
+      searall:'',//搜索所有用户
+      dialogVisible: false, //添加好友对话框
       innerdialogVisible: false,  //好友验证消息对话框
       radio: "聊天，朋友圈",  //好友权限单选框    
       value: "",        //不让他看选项
       value2: "",       //不看他选项
+      searchUser:[]
     };
   },
   methods: {
@@ -229,6 +173,15 @@ export default {
           message: '好友申请已发送',
         });
     },
+    searchAll(search){
+      if(search!=''){
+        GetAllUser({parem:search}).then(response=>{
+        const result=response.data.result
+        console.log(result)
+        this.searchUser=result;
+      })
+      }
+    }
   },
   mixins: [userListMixin],
 
@@ -328,7 +281,7 @@ input:focus {
 }
 .addleft_firendList {
   width: 93%;
-  height: 400px;
+  height: auto;
   margin: 20px auto;
   
 }

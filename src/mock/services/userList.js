@@ -12,7 +12,7 @@ const userList=options=>{
         {id:2,headimg:headimg3,name:'哥',lastcord:'22213123213',time:"9:01"},
         {id:3,headimg:headimg4,name:'东',lastcord:'还会2',time:"9:03"},
         {id:4,headimg:headimg5,name:'东2哥',lastcord:'2还会',time:"9:04"},
-        {id:5,headimg:headimg,name:'牛',lastcord:'2会',time:"9:05"},
+        {id:5,headimg:headimg,name:'牛n',lastcord:'2会',time:"9:05"},
     ]
     const userList=builder(list)
     console.log(userList)

@@ -8,6 +8,7 @@ if(process.env.NODE_ENV !=='production'||process.env.VUE_APP_PREVIEW==='true'){
     require('./services/userList')
     require('./services/recordSpan')
     require('./services/myself')
+    require('./services/allUserSearch')
     Mock.setup({
         timeout:0   //多久相应，为了避免白屏，以后白屏优化的时候再进行设置
     })
