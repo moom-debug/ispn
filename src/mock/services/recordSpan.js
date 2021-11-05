@@ -62,11 +62,10 @@ const currentRecord=(options)=>{
     }
     else if(body.id==5){
         return builder({
-            name:'牛',
+            name:'牛n',
             headimg:headimg,
             record:[
-                {id:1,text:'我是新加的',direction:'left'},
-                {id:2,text:'你头像怎么跟我一样',direction:'right'},
+                {id:1,text:'我是新好友',direction:'left'},
                 
             ]
         })

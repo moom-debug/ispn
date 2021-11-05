@@ -147,8 +147,10 @@
 
 <script>
 import {GetAllUser} from '@/api/listUser'
+import {list} from '@/mock/services/userList'
 //相关搜索操作封装到了仓库中
 import userListMixin from "@/store/mixin/userListMixin";
+import headimg from '@/assets/img/headimg.jpg'
 export default {
   data() {
     return {
@@ -172,6 +174,18 @@ export default {
       this.$message({
           message: '好友申请已发送',
         });
+      const h = this.$createElement;
+      setTimeout(()=>{
+        this.$notify({
+          title: '好友通过',
+          message: h('i', { style: 'color: teal'}, '好友申请已通过，快去看看吧')
+        });
+        list.push({id:5,headimg:headimg,name:'牛n',lastcord:'2会',time:"9:05"})
+        setTimeout(()=>{
+          this.$store.dispatch('userList/GetUserList')
+        },1000)
+      },5000)
+      
     },
     searchAll(search){
       if(search!=''){
