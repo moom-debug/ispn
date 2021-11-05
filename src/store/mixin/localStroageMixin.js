@@ -15,6 +15,8 @@ const localStroageMixin={
           }
           else
             storage.set(this.id,[this.input])
+            this.$store.commit('localStroage/SETNEWLIST',storage.get(this.id))
+            this.input=""
         }
       },
     computed:{

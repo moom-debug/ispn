@@ -29,7 +29,8 @@
           </div>
         </div>
       </li>
-      <li v-for="(item,index) in storag" :key="index+100" class="recordli_left">
+      <!-- 这里key+100是为了避免与上面的key重复，但其实只要上面聊天记录大于100也会报错，但是因为连接后端后并不会有以下代码，所以不用管了 -->
+      <li v-for="(item,index) in storag" :key="index+100" class="recordli_left"> 
         <div class="everycord">
           <div class="record_img right">
             <img :src="headImg" alt="" />

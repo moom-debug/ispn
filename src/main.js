@@ -4,10 +4,10 @@ import App from "./App.vue";
 import store from './store'
 import './mock'
 
-// import Element from "element-ui";
-// import 'element-ui/lib/theme-chalk/index.css'
+import Element from "element-ui";
+import 'element-ui/lib/theme-chalk/index.css'
 
-// Vue.use(Element)
+Vue.use(Element)
 Vue.config.productionTip = false;
 
 new Vue({

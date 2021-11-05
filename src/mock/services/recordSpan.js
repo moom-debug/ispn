@@ -17,6 +17,7 @@ const currentRecord=(options)=>{
             headimg:headimg2,
             record:[
                 {id:1,text:'你说我是谁',direction:'left'},
+                {id:1,text:'富恒',direction:'left'},
                 {id:2,text:'我咋知道',direction:'right'},
                 {id:3,text:'hhhhh',direction:'left'},
                 {id:4,text:'那你说我是谁',direction:'right'},
