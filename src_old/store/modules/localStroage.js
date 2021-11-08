@@ -1,7 +1,7 @@
 const localStroage={
     namespaced:true,
     state:{
-        newList:[]
+        newList:''
     },
     mutations:{
         SETNEWLIST(state,value){

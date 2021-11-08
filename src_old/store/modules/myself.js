@@ -4,8 +4,7 @@ const myself={
     namespaced:true,
     state:{
         headImg:null,  //headImg每个字母的大小写一定要搞清楚
-        name:'',
-        token:0,
+        name:''
     },
     mutations:{
         SETNAME(state,value){
@@ -13,9 +12,6 @@ const myself={
         },
         SETHEADIMG(state,value){
             state.headImg=value
-        },
-        SETTOKEN(state,value){
-            state.token=value
         }
     },
     actions:{
@@ -26,7 +22,6 @@ const myself={
                     const result=response.data.result
                     commit('SETNAME',result.name)
                     commit('SETHEADIMG',result.headimg)
-                    commit('SETTOKEN',result.token)
                     resolve()
                 }).catch(error=>{
                     reject(error)

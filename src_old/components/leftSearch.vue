@@ -43,19 +43,12 @@
               @keyup="searchAll(searall)"
             />
           </div>
-          <div
-            class="left_firendList addleft_firendList"
-            v-if="searchUser != ''"
-          >
+          <div class="left_firendList addleft_firendList" v-if="searchUser!=''">
             <ul class="firend_ul addleft_firendList">
               <!-- 每个li都是一个区域 -->
-              <li
-                class="friend_li addfriend_li"
-                v-for="item in searchUser"
-                :key="item.key"
-              >
+              <li class="friend_li addfriend_li" v-for="item in searchUser" :key='item.key'>
                 <a href="javascript:;">
-                  <div class="li_outter" @click="addfri(item.id,item.name)">
+                  <div class="li_outter" @click="addfri">
                     <!-- 个人头像 -->
                     <div class="li_left">
                       <img :src="item.headimg" alt="" />
@@ -63,7 +56,7 @@
                     <div class="li_right">
                       <!-- 名字与最后的聊天记录 -->
                       <div class="li_text">
-                        <div class="liname">{{ item.name }}</div>
+                        <div class="liname">{{item.name}}</div>
                       </div>
                       <!-- 时间 -->
                       <div class="litime">
@@ -73,6 +66,7 @@
                   </div>
                 </a>
               </li>
+              
             </ul>
           </div>
           <span slot="footer" class="dialog-footer">
@@ -95,7 +89,6 @@
             cols="30"
             rows="10"
             class="textwrite addtextwrite"
-            v-model="whoIAm"
           ></textarea>
           <span slot="footer" class="dialog-footer">
             <el-button @click="innerdialogVisible = false">取 消</el-button>
@@ -110,10 +103,14 @@
           </span>
           <div class="innermargin">设置朋友权限</div>
           <el-radio-group v-model="radio">
-            <el-radio-button label="聊天，朋友圈"></el-radio-button>
-            <el-radio-button label="仅聊天"></el-radio-button>
+            <el-radio-button
+              label="聊天，朋友圈"
+            ></el-radio-button>
+            <el-radio-button
+              label="仅聊天"
+            ></el-radio-button>
           </el-radio-group>
-          <div class="innermargin" v-show="radio === '聊天，朋友圈'">
+          <div class="innermargin" v-show="radio=== '聊天，朋友圈'">
             更多权限细节
           </div>
           <div class="moreDetail" v-show="radio === '聊天，朋友圈'">
@@ -142,132 +139,65 @@
           </div>
         </el-dialog>
         <!-- 以上部分为魔改element组件部分，add开头的类名都是新加的样式可以在本组件找到css，否则css在其他组件.vue的style部分 -->
+
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { GetAllUser,addFriend,friendAgree } from "@/api/listUser";
-import { list } from "@/mock/services/userList";
+import {GetAllUser} from '@/api/listUser'
+import {list} from '@/mock/services/userList'
 //相关搜索操作封装到了仓库中
 import userListMixin from "@/store/mixin/userListMixin";
-import myselfMixin from "@/store/mixin/myselfMixin";
-import headimg from "@/assets/img/headimg.jpg";
+import headimg from '@/assets/img/headimg.jpg'
 export default {
   data() {
     return {
       searname: "", //搜索好友，暂时存取searname用v-model
-      searall: "", //搜索所有用户
+      searall:'',//搜索所有用户
       dialogVisible: false, //添加好友对话框
-      innerdialogVisible: false, //好友验证消息对话框
-      radio: "聊天，朋友圈", //好友权限单选框
-      value: false, //不让他看选项
-      value2: false, //不看他选项
-      searchUser: [], //搜索到的返回用户列表
-      wantAddId: 0, //点击添加好友后把想添加好友的id暂存等会验证消息框可以用
-      wantAddName:'', //点击添加好友后把想添加好友的名字暂存等会验证消息框可以用
-      whoIAm: "", //验证消息
-      jurisdiction: "", //权限
+      innerdialogVisible: false,  //好友验证消息对话框
+      radio: "聊天，朋友圈",  //好友权限单选框    
+      value: "",        //不让他看选项
+      value2: "",       //不看他选项
+      searchUser:[]
     };
   },
   methods: {
-    addfri(id,name) {
+    addfri() {
       // 好友权限框弹出
       this.innerdialogVisible = true;
-      this.wantAddId = id; //点击添加好友后把想添加好友的id暂存等会验证消息框可以用
-      this.wantAddName= name; //点击添加好友后把想添加好友的名字暂存等会验证消息框可以用
     },
-
-    //——————————当你点击好友申请发送后
     messag() {
-      //点击申请后首先要处理的是权限到底是数据库四种情况的哪一种
-      if (this.radio == "聊天，朋友圈") {
-        if (this.value == true && this.value2 == false) {
-          this.jurisdiction = "notLetWatch";
-        } else if (this.value2 == true && this.value == false) {
-          this.jurisdiction = "notWatch";
-        } else if (this.value2 == true && this.value == true) {
-          this.jurisdiction = "chatOnly";
-        } else {
-          this.jurisdiction = "fully";
-        }
-      } else {
-        this.jurisdiction = "chatOnly";
-      }
-
-      // 向服务器发送我要加哪个好友
-      addFriend({
-        myToken: this.token,
-        friendId: this.wantAddId,
-        message: this.whoIAm,
-        jurisdiction: this.jurisdiction,
-      }).then(response => {
-          this.$message({
-          //若成功会返回申请好友成功
-          message: response.data.result,
-        })
-      }).catch(error=>{
-        console.log(error)
-      })
-
-      //好友申请通过后(模拟websocket通知，一般是应该在钩子函数里注册，有好友通过应该是实时通知),用定时器营造效果
-      //两个定时器，一个是好友申请通过弹窗定时器，还有一个定时器是弹窗后一秒再更新列表
-      friendAgree({
-        myToken: this.token,
-        friendId: this.wantAddId,
-        friendName: this.wantAddName
-      }).then(response=>{
-        const h = this.$createElement
-        const result=response.data.result
-        console.log('好友申请'+result)
-        // 好友通过通知
-        setTimeout(() => {
-          this.$notify({
-            title: "好友通过",
-            message: h(
-              "i",
-              { style: "color: teal" },
-              `${result.name} 同意好友申请了，快去看看吧！`
-            ),
-          });
-          //模拟数据库朋友列表添加该位好友
-          list.push({
-            id:result.id,
-            headimg: headimg,
-            name: result.name,
-            lastcord: "我是新好友",
-            time: "9:05",
-          });
-          // 模拟websocket重新更新好友列表
-          setTimeout(() => {
-            this.$store.dispatch("userList/GetUserList");
-          }, 1000);
-        }, 10000);
-      }).catch(error=>{
-        console.log(error)
-      });
-    },
-  
-
-
-    
-    //与其他组件通过store的action方法去调用api不同，在这里我没有设立另外的仓库，你会发现其实可以很直接地从api拿数据
-    //查找好友向数据库
-    searchAll(search) {
-      if (search != "") {
-        GetAllUser({ parem: search }).then((response) => {
-          const result = response.data.result;
-          console.log(result);
-          // 拿到要的用户列表以后直接放到这里的data就可以用了
-          this.searchUser = result;
-        }).catch(error=>{
-          console.log(error)
+      // 提示好友申请已发送
+      this.$message({
+          message: '好友申请已发送',
         });
-      }
+      const h = this.$createElement;
+      setTimeout(()=>{
+        this.$notify({
+          title: '好友通过',
+          message: h('i', { style: 'color: teal'}, '好友申请已通过，快去看看吧')
+        });
+        list.push({id:5,headimg:headimg,name:'牛n',lastcord:'2会',time:"9:05"})
+        setTimeout(()=>{
+          this.$store.dispatch('userList/GetUserList')
+        },1000)
+      },5000)
+      
     },
+    searchAll(search){
+      if(search!=''){
+        GetAllUser({parem:search}).then(response=>{
+        const result=response.data.result
+        console.log(result)
+        this.searchUser=result;
+      })
+      }
+    }
   },
-  mixins: [userListMixin, myselfMixin],
+  mixins: [userListMixin],
 
   //在userListMixin里调用了
   // methods:{
@@ -331,9 +261,11 @@ input:focus {
 }
 /* ---朋友列表栏搜索框结束--- */
 
+
+
 /* ----------以下为element部分组件样式,add开头样式是原生自己写到,el开头都是element样式--------- */
 /* 无法修改记得用穿透,再不行就用!important,或者看看能不能自己增加类 */
-.search_right >>> .el-dialog {
+.search_right >>> .el-dialog {   
   border-radius: 20px;
   /* 因为有个最大的element.style压着所以这里只能!important */
 }
@@ -350,7 +282,7 @@ input:focus {
 .addsear_text:focus {
   background-color: rgb(237, 236, 241);
 }
-.addsearch_left {
+.addsearch_left{
   width: 55%;
   margin: 0px auto;
 }
@@ -365,7 +297,7 @@ input:focus {
   width: 93%;
   height: auto;
   margin: 20px auto;
-  max-height: 370px;
+  
 }
 .addfriend_li {
   float: left;

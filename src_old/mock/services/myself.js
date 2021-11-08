@@ -4,7 +4,6 @@ import Mock from 'mockjs'
 import headimg from '@/assets/img/headimg.jpg'
 const myself=(options)=>{
     const me={
-        token:0,
         name:'mo_om',
         headimg:headimg
     }

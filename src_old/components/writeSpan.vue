@@ -40,10 +40,7 @@ import localStroageMixin from '@/store/mixin/localStroageMixin'
 export default {
   data(){
     return{
-      input:'',
-      i:0, //语录是哪些
-      yulu:['你好','我叫李宪栋','我来自异时空']  //语录
-
+      input:''
     }
   },
   //写到localStroageMixin里了

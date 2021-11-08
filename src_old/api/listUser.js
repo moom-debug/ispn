@@ -4,9 +4,7 @@ const Api={
   listUser:'/user/list',
   RecordCurrent:'/record/current',
   myself:'/myself/get',
-  allUser:'/allUser/list',
-  addFriend:'/friend/add',
-  friendAgree:'/friend/agree'
+  allUser:'/allUser/list'
 }
 
 // 查询所有好友列表
@@ -30,24 +28,6 @@ export function getCurrentRecord(parameter) {
 export function GetAllUser(parameter) {
   return request({
     url: Api.allUser,
-    method: 'post',
-    data:parameter
-  })
-}
-
-//添加好友发送给后端
-export function addFriend(parameter) {
-  return request({
-    url: Api.addFriend,
-    method: 'post',
-    data:parameter
-  })
-}
-
-//好友申请已通过
-export function friendAgree(parameter) {
-  return request({
-    url: Api.friendAgree,
     method: 'post',
     data:parameter
   })

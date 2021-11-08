@@ -3,7 +3,7 @@ import { mapState,mapActions } from "vuex";
 const myselfMixin={
     computed:{
         //调用位置为componentsLeft.vue和recordSpan.vue
-        ...mapState('myself',['headImg','name','token'])
+        ...mapState('myself',['headImg','name'])
     },
     
 }
