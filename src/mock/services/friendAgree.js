@@ -1,4 +1,4 @@
-// 模拟通过的好友申请,返回谁通过了
+// 模拟通过的好友申请,返回谁通过了，模拟websocket
 import { builder,getBody } from "../util";
 import  Mock from 'mockjs'
 

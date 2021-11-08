@@ -149,7 +149,7 @@
 
 <script>
 import { GetAllUser,addFriend,friendAgree } from "@/api/listUser";
-import { list } from "@/mock/services/userList";
+import { list } from "@/mock/services/userList";  //把mock数据的好友列表的list拿出来临时增加好友
 //相关搜索操作封装到了仓库中
 import userListMixin from "@/store/mixin/userListMixin";
 import myselfMixin from "@/store/mixin/myselfMixin";
@@ -230,6 +230,9 @@ export default {
               { style: "color: teal" },
               `${result.name} 同意好友申请了，快去看看吧！`
             ),
+            type:'success',
+            // position: 'top-left'
+
           });
           //模拟数据库朋友列表添加该位好友
           list.push({

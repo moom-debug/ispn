@@ -6,7 +6,9 @@ const Api={
   myself:'/myself/get',
   allUser:'/allUser/list',
   addFriend:'/friend/add',
-  friendAgree:'/friend/agree'
+  friendAgree:'/friend/agree',
+  incomingFriend:'/friend/new',
+  AgreeOrNo:'/yesOr/no'
 }
 
 // 查询所有好友列表
@@ -48,6 +50,23 @@ export function addFriend(parameter) {
 export function friendAgree(parameter) {
   return request({
     url: Api.friendAgree,
+    method: 'post',
+    data:parameter
+  })
+}
+
+//websocket模拟对方申请加好友
+export function incomingFriend() {
+  return request({
+    url: Api.incomingFriend,
+    method: 'get',
+  })
+}
+
+//向后端发送我是否接受还是拒绝了某个人
+export function AgreeOrNo(parameter) {
+  return request({
+    url: Api.AgreeOrNo,
     method: 'post',
     data:parameter
   })
